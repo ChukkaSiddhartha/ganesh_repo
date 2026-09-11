@@ -1,0 +1,185 @@
+ls target
+
+FROM tomcat:9-jdk17
+
+
+COPY target/ORS.war /usr/local/tomcat/webapps/ORS.war
+
+
+EXPOSE 8080
+
+
+CMD ["catalina.sh", "run"]
+
+docker build -t ors .
+
+docker images
+
+docker run -d -p 8006:8080 --name ors-container ors
+
+docker ps
+
+http://localhost:8006/ORS
+
+docker logs ors-container
+
+docker tag ors YOUR_USERNAME/ors:latest
+
+docker login
+
+docker push YOUR_USERNAME/ors:latest
+
+
+
+----------------------------------------------
+
+
+
+cd ~/git/ORS
+
+
+mvn clean package
+
+
+ls target
+
+
+docker build -t ors .
+
+
+docker images
+
+
+docker run -d -p 8006:8080 --name ors-container ors
+
+
+docker ps
+
+
+docker logs ors-container
+
+
+docker tag ors YOUR_USERNAME/ors:latest
+
+
+docker login
+
+
+docker push YOUR_USERNAME/ors:latest
+
+
+
+------------------------------------------------------------------
+
+
+
+git clone <url>                         // Clone repository
+
+
+cd ORS                                  // Enter project folder
+
+
+git status                              // Check repository status
+
+
+git remote -v                           // Check remote GitHub repository
+
+
+git branch                              // Show local branches
+
+
+git switch -c apply-form                // Create and switch to new branch
+
+
+git switch apply-form                   // Switch to existing branch
+
+
+git fetch origin                        // Get latest changes from remote
+
+
+git log                                  // Show detailed commit history
+
+
+git log --oneline                       // Show short commit history
+
+
+git log HEAD..origin/main --oneline     // Check commits missing from local branch
+
+
+git log --all --oneline -- apply.jsp    // Show commits related to apply.jsp
+
+
+git diff                                 // Show unstaged changes
+
+
+git diff HEAD origin/main               // Compare local code with remote main
+
+
+git add apply.jsp                        // Stage apply.jsp
+
+
+git add .                                // Stage all changes
+
+
+git commit -m "message"                  // Create a commit
+
+
+git rebase origin/main                   // Rebase current branch onto latest main
+
+
+git rebase --continue                    // Continue rebase after resolving conflict
+
+
+git rebase --abort                       // Cancel rebase
+
+
+git rebase --skip                        // Skip current commit during rebase
+
+
+git show <commit-id>                     // Show details of a commit
+
+
+git cherry-pick <commit-id>              // Apply a specific old commit
+
+
+git push origin apply-form               // Push branch to GitHub
+
+
+git push --force-with-lease origin apply-form  // Push rebased branch safely
+
+
+git push --force origin apply-form       // Force push branch
+
+
+git branch -r                            // Show remote branches
+
+
+git branch -a                            // Show all local and remote branches
+
+
+git remote show origin                   // Show detailed remote information
+
+
+git fetch --prune origin                 // Fetch and remove deleted remote branches
+
+
+git remote set-url origin <url>          // Change remote repository URL
+
+
+
+ssh-keygen -t ed25519 -C "email"         // Create SSH key
+
+
+ls ~/.ssh                                // Check existing SSH keys
+
+
+eval "$(ssh-agent -s)"                   // Start SSH agent
+
+
+ssh-add ~/.ssh/id_ed25519                // Add SSH private key
+
+
+cat ~/.ssh/id_ed25519.pub                // Display public SSH key
+
+
+ssh -T git@github.com                    // Test GitHub SSH connection
